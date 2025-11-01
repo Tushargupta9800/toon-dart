@@ -1,0 +1,38 @@
+/// Options for encoding to TOON format.
+class EncodeOptions {
+  /// Number of spaces per indentation level (default: 2).
+  final int indent;
+
+  /// Delimiter for array values and tabular rows (default: ',').
+  final String delimiter;
+
+  /// Optional marker to prefix array lengths (default: false).
+  final String? lengthMarker;
+
+  const EncodeOptions({
+    this.indent = 2,
+    this.delimiter = ',',
+    this.lengthMarker,
+  }) : assert(indent > 0, 'indent must be positive');
+
+  String get delimiterDisplay {
+    if (delimiter == ',') return '';
+    if (delimiter == '\t') return '\t';
+    if (delimiter == '|') return '|';
+    return delimiter;
+  }
+}
+
+/// Options for decoding from TOON format.
+class DecodeOptions {
+  /// Expected number of spaces per indentation level (default: 2).
+  final int indent;
+
+  /// Enable strict validation (default: true).
+  final bool strict;
+
+  const DecodeOptions({
+    this.indent = 2,
+    this.strict = true,
+  }) : assert(indent > 0, 'indent must be positive');
+}

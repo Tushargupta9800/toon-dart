@@ -717,16 +717,7 @@ fvm dart run example/1_simple_json.dart
 - **Swift:** [TOONEncoder](https://github.com/mattt/TOONEncoder)
 
 ## Contributors
-
-We thank all contributors who help make this project better! 🎉
-
-### Dart/Flutter Implementation
-
-- **[Tushar Gupta](https://github.com/Tushargupta9800)** - Initial Dart/Flutter implementation
-
----
-
-Contributions are welcome! Please see our [Contributing Guidelines](./CONTRIBUTING.md) (if available) or open an issue to discuss your ideas.
+- **[Tushar Gupta](https://github.com/Tushargupta9800)**
 
 ## License
 

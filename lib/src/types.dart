@@ -70,11 +70,15 @@ class ResolvedEncodeOptions {
   final int indent;
   final Delimiter delimiter;
   final String? lengthMarker;
+  final bool enforceFlatMap;
+  final String flatMapSeparator;
 
   const ResolvedEncodeOptions({
     required this.indent,
     required this.delimiter,
     this.lengthMarker,
+    required this.enforceFlatMap,
+    required this.flatMapSeparator,
   });
 }
 
@@ -82,10 +86,14 @@ class ResolvedEncodeOptions {
 class ResolvedDecodeOptions {
   final int indent;
   final bool strict;
+  final bool enforceFlatMap;
+  final String flatMapSeparator;
 
   const ResolvedDecodeOptions({
     required this.indent,
     required this.strict,
+    required this.enforceFlatMap,
+    required this.flatMapSeparator,
   });
 }
 

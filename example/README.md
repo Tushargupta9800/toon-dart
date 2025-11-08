@@ -339,6 +339,169 @@ Handles edge cases like:
 - Number edge cases
 - Deeply nested structures
 
+### 9. Flat Map (`9_flat_map.dart`)
+Demonstrates flattening nested objects into flat maps:
+- Simple nested objects
+- Deeply nested structures
+- Custom separators
+- Arrays with nested objects
+- Comparison with normal (non-flattened) encoding
+
+**Output:**
+```
+=== 9. Flat Map Examples ===
+
+Example 1: Simple nested object
+Original:
+{
+  "a": {
+    "b": "x",
+    "c": 42
+  }
+}
+
+TOON (flattened):
+a_b: x
+a_c: 42
+
+Decoded (unflattened):
+{
+  "a": {
+    "b": "x",
+    "c": 42.0
+  }
+}
+
+Example 2: Deeply nested object
+Original:
+{
+  "user": {
+    "profile": {
+      "name": "Alice",
+      "settings": {
+        "theme": "dark",
+        "notifications": true
+      }
+    },
+    "id": 1
+  }
+}
+
+TOON (flattened):
+user_profile_name: Alice
+user_profile_settings_theme: dark
+user_profile_settings_notifications: true
+user_id: 1
+
+Decoded (unflattened):
+{
+  "user": {
+    "profile": {
+      "name": "Alice",
+      "settings": {
+        "theme": "dark",
+        "notifications": true
+      }
+    },
+    "id": 1.0
+  }
+}
+
+Example 3: Custom separator (using ".")
+Original:
+{
+  "config": {
+    "database": {
+      "host": "localhost",
+      "port": 5432
+    }
+  }
+}
+
+TOON (flattened with "." separator):
+config.database.host: localhost
+config.database.port: 5432
+
+Decoded (unflattened):
+{
+  "config": {
+    "database": {
+      "host": "localhost",
+      "port": 5432.0
+    }
+  }
+}
+
+Example 4: Nested object with arrays
+Original:
+{
+  "users": [
+    {
+      "id": 1,
+      "profile": {
+        "name": "Alice",
+        "tags": ["admin", "dev"]
+      }
+    },
+    {
+      "id": 2,
+      "profile": {
+        "name": "Bob",
+        "tags": ["user"]
+      }
+    }
+  ]
+}
+
+TOON (flattened):
+users[2]:
+  - id: 1
+    profile_name: Alice
+    profile_tags[2]: admin,dev
+  - id: 2
+    profile_name: Bob
+    profile_tags[1]: user
+
+Decoded (unflattened):
+{
+  "users": [
+    {
+      "id": 1.0,
+      "profile": {
+        "name": "Alice",
+        "tags": ["admin", "dev"]
+      }
+    },
+    {
+      "id": 2.0,
+      "profile": {
+        "name": "Bob",
+        "tags": ["user"]
+      }
+    }
+  ]
+}
+
+Example 5: Without flat map (normal behavior)
+TOON (normal, not flattened):
+a:
+  b: x
+
+Decoded (normal):
+{
+  "a": {
+    "b": "x"
+  }
+}
+```
+
+### 8. Edge Cases (`8_edge_cases.dart`)
+Handles edge cases like:
+- Empty structures
+- Special strings requiring quoting
+- Number edge cases
+- Deeply nested structures
+
 **Output:**
 ```
 === 8. Edge Cases ===
@@ -384,6 +547,7 @@ fvm dart run example/5_mixed_arrays.dart
 fvm dart run example/6_custom_options.dart
 fvm dart run example/7_decoding_examples.dart
 fvm dart run example/8_edge_cases.dart
+fvm dart run example/9_flat_map.dart
 ```
 
 **Note:** If you're not using fvm, you can use regular `dart` commands instead.

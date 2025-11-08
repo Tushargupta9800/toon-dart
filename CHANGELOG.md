@@ -2,3 +2,7 @@
 
 - Initial release
 - Complete implementation of encoder and decoder
+
+## 0.0.2
+
+- Added FlatMap support

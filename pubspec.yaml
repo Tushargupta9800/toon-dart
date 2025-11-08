@@ -1,10 +1,10 @@
 name: toon_x_json
 description: Token-Oriented Object Notation (TOON) - a token-efficient JSON alternative for LLM prompts
-version: 0.0.1
-repository: https://github.com/toon-format/toon-dart
+version: 0.0.2
+repository: https://github.com/Tushargupta9800/toon-dart
 homepage: https://toonformat.dev
-documentation: https://github.com/toon-format/toon-dart#readme
-issue_tracker: https://github.com/toon-format/toon-dart/issues
+documentation: https://github.com/Tushargupta9800/toon-dart#readme
+issue_tracker: https://github.com/Tushargupta9800/toon-dart/issues
 
 environment:
   sdk: ^3.0.0

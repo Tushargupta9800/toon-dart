@@ -14,6 +14,8 @@ import 'src/decode/scanners.dart';
 import 'src/encode/encoders.dart';
 import 'src/encode/normalize.dart';
 import 'src/options.dart';
+import 'src/utilities/flatten.dart';
+import 'src/types.dart';
 
 /// Encodes a value to TOON format.
 ///
@@ -23,7 +25,14 @@ import 'src/options.dart';
 String encode(Object? value, {EncodeOptions? options}) {
   final normalized = normalizeValue(value);
   final resolvedOptions = (options ?? const EncodeOptions()).resolve();
-  return encodeValue(normalized, resolvedOptions);
+  
+  // Apply flattening if enabled
+  JsonValue valueToEncode = normalized;
+  if (resolvedOptions.enforceFlatMap && isJsonObject(normalized)) {
+    valueToEncode = flattenMap(normalized, resolvedOptions.flatMapSeparator);
+  }
+  
+  return encodeValue(valueToEncode, resolvedOptions);
 }
 
 /// Decodes a TOON-formatted string to a Dart value.
@@ -35,5 +44,12 @@ Object? decode(String input, {DecodeOptions? options}) {
   final resolvedOptions = (options ?? const DecodeOptions()).resolve();
   final scanResult = toParsedLines(input, resolvedOptions.indent, resolvedOptions.strict);
   final cursor = LineCursor(scanResult.lines, scanResult.blankLines);
-  return decodeValueFromLines(cursor, resolvedOptions);
+  final decoded = decodeValueFromLines(cursor, resolvedOptions);
+  
+  // Apply unflattening if enabled
+  if (resolvedOptions.enforceFlatMap && isJsonObject(decoded)) {
+    return unflattenMap(decoded, resolvedOptions.flatMapSeparator);
+  }
+  
+  return decoded;
 }

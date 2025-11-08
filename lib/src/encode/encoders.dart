@@ -163,7 +163,7 @@ void encodeArrayOfObjectsAsTabular(
 List<String>? extractTabularHeader(List<JsonObject> rows) {
   if (rows.isEmpty) return null;
 
-  final firstRow = rows[0]!;
+  final firstRow = rows[0];
   final firstKeys = firstRow.keys.toList();
   if (firstKeys.isEmpty) return null;
 
@@ -244,7 +244,7 @@ void encodeObjectAsListItem(JsonObject obj, LineWriter writer, Depth depth, Reso
   }
 
   // First key-value on the same line as "- "
-  final firstKey = keys[0]!;
+  final firstKey = keys[0];
   final encodedKey = encodeKey(firstKey);
   final firstValue = obj[firstKey];
 
@@ -293,7 +293,7 @@ void encodeObjectAsListItem(JsonObject obj, LineWriter writer, Depth depth, Reso
 
   // Remaining keys on indented lines
   for (int i = 1; i < keys.length; i++) {
-    final key = keys[i]!;
+    final key = keys[i];
     encodeKeyValuePair(key, obj[key], writer, depth + 1, options);
   }
 }

@@ -1,5 +1,4 @@
-## 0.1.0
+## 0.0.1
 
 - Initial release
-- Reserved package namespace on pub.dev
-- Implementation pending
+- Complete implementation of encoder and decoder

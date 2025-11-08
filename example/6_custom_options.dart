@@ -1,4 +1,4 @@
-import '../lib/toon_format.dart';
+import '../lib/toon_x_json.dart';
 
 void main() {
   print('=== 6. Custom Encoding Options ===\n');

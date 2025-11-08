@@ -1,4 +1,4 @@
-import '../lib/toon_format.dart';
+import '../lib/toon_x_json.dart';
 
 void main() {
   print('=== 8. Edge Cases ===\n');

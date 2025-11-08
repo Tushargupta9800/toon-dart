@@ -212,7 +212,7 @@ flutter pub get
 **Example usage:**
 
 ```dart
-import 'package:toon_format/toon_format.dart';
+import 'package:toon_format/toon_x_json.dart';
 
 void main() {
   final data = {
@@ -431,7 +431,7 @@ A TOON-formatted string with no trailing newline or spaces.
 **Example:**
 
 ```dart
-import 'package:toon_format/toon_format.dart';
+import 'package:toon_format/toon_x_json.dart';
 
 final items = [
   {'sku': 'A1', 'qty': 2, 'price': 9.99},
@@ -551,7 +551,7 @@ A Dart value (Map, List, or primitive) representing the parsed TOON data.
 **Example:**
 
 ```dart
-import 'package:toon_format/toon_format.dart';
+import 'package:toon_format/toon_x_json.dart';
 
 const toon = '''
 items[2]{sku,qty,price}:

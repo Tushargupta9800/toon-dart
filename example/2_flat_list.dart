@@ -1,4 +1,4 @@
-import '../lib/toon_format.dart';
+import '../lib/toon_x_json.dart';
 import 'json_formatter.dart';
 
 void main() {

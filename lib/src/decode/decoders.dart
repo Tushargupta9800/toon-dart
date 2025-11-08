@@ -1,6 +1,6 @@
 import '../types.dart';
 import '../utilities/constants.dart';
-import '../utilities/string-utils.dart';
+import '../utilities/string_utils.dart';
 import 'parser.dart';
 import 'scanners.dart';
 import 'validation.dart';
@@ -72,7 +72,7 @@ JsonObject decodeObject(LineCursor cursor, Depth baseDepth, ResolvedDecodeOption
     }
 
     if (computedDepth != null && line.depth == computedDepth) {
-      final pair = decodeKeyValuePair(line, cursor, computedDepth!, options);
+      final pair = decodeKeyValuePair(line, cursor, computedDepth, options);
       obj[pair.key] = pair.value;
     } else {
       // Different depth (shallower or deeper) - stop object parsing
@@ -208,9 +208,7 @@ List<JsonValue> decodeListArray(
 
     if (line.depth == itemDepth && isListItem) {
       // Track first and last item line numbers
-      if (startLine == null) {
-        startLine = line.lineNumber;
-      }
+      startLine ??= line.lineNumber;
       endLine = line.lineNumber;
 
       final item = decodeListItem(cursor, itemDepth, options);

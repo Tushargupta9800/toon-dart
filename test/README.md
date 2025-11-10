@@ -30,23 +30,6 @@ Or using fvm:
 fvm dart test test/conformance_test.dart
 ```
 
-### Debug Mode
-
-By default, tests show a compact one-liner output (✅ or ❌) for each test case. To see detailed output with test case names, enable debug mode:
-
-```bash
-# Using environment variable
-TOON_TEST_DEBUG=true dart test test/conformance_test.dart
-
-# Or with fvm
-TOON_TEST_DEBUG=true fvm dart test test/conformance_test.dart
-```
-
-In debug mode, you'll see:
-- Test case names for each passing test
-- Detailed error messages for failing tests
-- Test case count information
-
 ## Test Coverage
 
 The conformance tests cover:

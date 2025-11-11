@@ -422,6 +422,8 @@ Converts any JSON-serializable value to TOON format.
   - `indent` – Number of spaces per indentation level (default: `2`)
   - `delimiter` – Delimiter for array values and tabular rows: `','` (comma), `'\t'` (tab), `'|'` (pipe) (default: `','`)
   - `lengthMarker` – Optional marker to prefix array lengths: `'#'` or `null` (default: `null`)
+  - `enforceFlatMap` – If `true`, converts nested objects into a flat map by concatenating keys with a separator (default: `false`)
+  - `flatMapSeparator` – Separator used when flattening nested objects (default: `'_'`)
 
 **Returns:**
 
@@ -532,6 +534,64 @@ encode(data, options: EncodeOptions(
 //   B2|1|14.5
 ```
 
+#### Flat Map Option
+
+The `enforceFlatMap` option allows you to convert nested JSON objects into a flat map structure, which can be useful for certain data processing scenarios or when working with systems that prefer flat key-value structures.
+
+When `enforceFlatMap` is `true`, nested objects are flattened by concatenating keys with the specified `flatMapSeparator`. The decoder can then unflatten these keys back into nested objects.
+
+**Example:**
+
+```dart
+final nested = {
+  'a': {
+    'b': 'x',
+    'c': 42,
+  }
+};
+
+// Encode with flat map
+final toonFlat = encode(nested, options: EncodeOptions(
+  enforceFlatMap: true,
+  flatMapSeparator: '_',
+));
+// a_b: x
+// a_c: 42
+
+// Decode with unflattening
+final decoded = decode(toonFlat, options: DecodeOptions(
+  enforceFlatMap: true,
+  flatMapSeparator: '_',
+));
+// {a: {b: 'x', c: 42}}
+```
+
+**Use Cases:**
+
+- Converting nested configuration objects to flat key-value pairs
+- Working with systems that require flat map structures
+- Simplifying nested data for certain processing pipelines
+
+**Custom Separator:**
+
+You can use any separator string (e.g., `'.'`, `'-'`, `'::'`):
+
+```dart
+final config = {
+  'database': {
+    'host': 'localhost',
+    'port': 5432,
+  }
+};
+
+encode(config, options: EncodeOptions(
+  enforceFlatMap: true,
+  flatMapSeparator: '.',
+));
+// database.host: localhost
+// database.port: 5432
+```
+
 ### `decode(input: String, {DecodeOptions? options}): Object?`
 
 Converts a TOON-formatted string back to Dart values.
@@ -542,6 +602,8 @@ Converts a TOON-formatted string back to Dart values.
 - `options` – Optional decoding options:
   - `indent` – Expected number of spaces per indentation level (default: `2`)
   - `strict` – Enable strict validation (default: `true`)
+  - `enforceFlatMap` – If `true`, unflattens flat map keys back into nested objects using the separator (default: `false`)
+  - `flatMapSeparator` – Separator used when unflattening flat map keys (default: `'_'`)
 
 **Returns:**
 
@@ -676,6 +738,7 @@ Check out the [examples directory](./example/) for comprehensive examples demons
 - Tabular arrays (best use case)
 - Mixed arrays
 - Custom encoding options
+- Flat map (flattening/unflattening nested objects)
 - Edge cases
 
 Run examples with:

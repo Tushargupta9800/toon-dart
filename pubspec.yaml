@@ -1,6 +1,6 @@
 name: toon_x_json
 description: TOON <--> JSON, TOON- A compact JSON format
-version: 0.0.3
+version: 0.0.4
 repository: https://github.com/Tushargupta9800/toon-dart
 documentation: https://github.com/Tushargupta9800/toon-dart#readme
 issue_tracker: https://github.com/Tushargupta9800/toon-dart/issues

@@ -1,8 +1,7 @@
 # Token-Oriented Object Notation (TOON) for Dart
 
-[![pub package](https://img.shields.io/pub/v/toon_format.svg)](https://pub.dev/packages/toon_format)
-[![pub points](https://img.shields.io/pub/points/toon_format.svg)](https://pub.dev/packages/toon_format/score)
-[![SPEC v1.4](https://img.shields.io/badge/spec-v1.4-lightgray)](https://github.com/toon-format/spec)
+[![pub package](https://img.shields.io/pub/v/toon_format.svg)](https://pub.dev/packages/toon_x_json)
+[![pub points](https://img.shields.io/pub/points/toon_format.svg)](https://pub.dev/packages/toon_x_json/score)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 **Token-Oriented Object Notation** is a compact, human-readable serialization format designed for passing structured data to Large Language Models with significantly reduced token usage. It's intended for *LLM input* as a lossless, drop-in representation of JSON data.
@@ -194,11 +193,11 @@ TOON achieves **73.9%** accuracy (vs JSON's 69.7%) while using **39.6% fewer tok
 
 ## Installation & Quick Start
 
-Add `toon_format` to your `pubspec.yaml`:
+Add `toon_x_json` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  toon_format: ^0.1.0
+  toon_x_json: ^0.0.3
 ```
 
 Then run:
@@ -212,7 +211,7 @@ flutter pub get
 **Example usage:**
 
 ```dart
-import 'package:toon_format/toon_x_json.dart';
+import 'package:toon_x_json/toon_x_json.dart';
 
 void main() {
   final data = {
@@ -431,7 +430,7 @@ A TOON-formatted string with no trailing newline or spaces.
 **Example:**
 
 ```dart
-import 'package:toon_format/toon_x_json.dart';
+import 'package:toon_x_json/toon_x_json.dart';
 
 final items = [
   {'sku': 'A1', 'qty': 2, 'price': 9.99},
@@ -551,7 +550,7 @@ A Dart value (Map, List, or primitive) representing the parsed TOON data.
 **Example:**
 
 ```dart
-import 'package:toon_format/toon_x_json.dart';
+import 'package:toon_x_json/toon_x_json.dart';
 
 const toon = '''
 items[2]{sku,qty,price}:
@@ -695,7 +694,7 @@ fvm dart run example/1_simple_json.dart
 ### Official Implementations
 
 - **TypeScript/JavaScript:** [@toon-format/toon](https://github.com/toon-format/toon) (reference implementation)
-- **Dart/Flutter:** [toon_format](https://github.com/toon-format/toon-dart) (this package) ⭐
+- **Dart/Flutter:** [toon_x_json](https://github.com/Tushargupta9800/toon-dart) (this package) ⭐
 - **Python:** [toon_format](https://github.com/toon-format/toon-python) *(in development)*
 - **Rust:** [toon_format](https://github.com/toon-format/toon-rust) *(in development)*
 

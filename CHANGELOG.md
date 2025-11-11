@@ -6,3 +6,7 @@
 ## 0.0.2
 
 - Added FlatMap support
+
+## 0.0.3
+
+- Minor fixes

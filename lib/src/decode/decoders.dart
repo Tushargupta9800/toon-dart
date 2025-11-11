@@ -11,7 +11,7 @@ import 'validation.dart';
 JsonValue decodeValueFromLines(LineCursor cursor, ResolvedDecodeOptions options) {
   final first = cursor.peek();
   if (first == null) {
-    throw StateError('No content to decode');
+    return <String, JsonValue>{};
   }
 
   // Check for root array

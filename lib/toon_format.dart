@@ -7,16 +7,34 @@
 /// For specification, see: https://github.com/johannschopplich/toon/blob/main/SPEC.md
 library toon_format;
 
+export 'src/options.dart';
+
+import 'src/decode/decoders.dart';
+import 'src/decode/scanners.dart';
+import 'src/encode/encoders.dart';
+import 'src/encode/normalize.dart';
+import 'src/options.dart';
+import 'src/types.dart';
+
 /// Encodes a value to TOON format.
 ///
-/// Currently not implemented.
-String encode(dynamic value, {Map<String, dynamic>? options}) {
-  throw UnimplementedError('TOON encoding is not yet implemented');
+/// [value] The value to encode (will be normalized to JSON-compatible types)
+/// [options] Optional encoding options
+/// Returns a TOON-formatted string
+String encode(Object? value, {EncodeOptions? options}) {
+  final normalized = normalizeValue(value);
+  final resolvedOptions = (options ?? const EncodeOptions()).resolve();
+  return encodeValue(normalized, resolvedOptions);
 }
 
 /// Decodes a TOON-formatted string to a Dart value.
 ///
-/// Currently not implemented.
-dynamic decode(String input, {Map<String, dynamic>? options}) {
-  throw UnimplementedError('TOON decoding is not yet implemented');
+/// [input] The TOON-formatted string to parse
+/// [options] Optional decoding options
+/// Returns a Dart value (Map, List, or primitive) representing the parsed TOON data
+Object? decode(String input, {DecodeOptions? options}) {
+  final resolvedOptions = (options ?? const DecodeOptions()).resolve();
+  final scanResult = toParsedLines(input, resolvedOptions.indent, resolvedOptions.strict);
+  final cursor = LineCursor(scanResult.lines, scanResult.blankLines);
+  return decodeValueFromLines(cursor, resolvedOptions);
 }

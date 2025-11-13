@@ -60,6 +60,10 @@ void main() {
 
 Interested in implementing TOON for Dart? Check out the [specification](https://github.com/johannschopplich/toon/blob/main/SPEC.md) and feel free to contribute!
 
+## Contributors
+
+- [Tushar Gupta](https://github.com/Tushargupta9800)
+
 ## License
 
-MIT License © 2025-PRESENT [Johann Schopplich](https://github.com/johannschopplich)
+MIT License © 2025-PRESENT [Johann Schopplich](https://github.com/johannschopplich) & [Tushar Gupta](https://github.com/Tushargupta9800)

@@ -2,21 +2,25 @@ import '../lib/toon_format.dart';
 import 'json_formatter.dart';
 
 void main() {
-  // Example: Simple JSON with array of objects (tabular format)
+  print('=== 1. Simple JSON Example ===\n');
+  
+  // Simple object with primitive values
   final data = {
-    'users': [
-      {'id': 1, 'name': 'Alice', 'role': 'admin'},
-      {'id': 2, 'name': 'Bob', 'role': 'user'}
-    ]
+    'name': 'John Doe',
+    'age': 30,
+    'active': true,
+    'score': 95.5,
+    'email': 'john@example.com',
   };
 
   final toon = encode(data);
-  print('=== Simple JSON Example ===');
+  print('TOON Format:');
   print(toon);
   print('');
   
-  // Decode it back
+  // Decode back
   final decoded = decode(toon);
   print('Decoded JSON:');
   printJson(decoded);
 }
+

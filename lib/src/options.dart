@@ -1,3 +1,5 @@
+import 'types.dart';
+
 /// Options for encoding to TOON format.
 class EncodeOptions {
   /// Number of spaces per indentation level (default: 2).
@@ -6,7 +8,8 @@ class EncodeOptions {
   /// Delimiter for array values and tabular rows (default: ',').
   final String delimiter;
 
-  /// Optional marker to prefix array lengths (default: false).
+  /// Optional marker to prefix array lengths (default: null).
+  /// Set to '#' to enable length marker.
   final String? lengthMarker;
 
   const EncodeOptions({
@@ -15,11 +18,13 @@ class EncodeOptions {
     this.lengthMarker,
   }) : assert(indent > 0, 'indent must be positive');
 
-  String get delimiterDisplay {
-    if (delimiter == ',') return '';
-    if (delimiter == '\t') return '\t';
-    if (delimiter == '|') return '|';
-    return delimiter;
+  /// Resolves encode options with defaults.
+  ResolvedEncodeOptions resolve() {
+    return ResolvedEncodeOptions(
+      indent: indent,
+      delimiter: delimiter,
+      lengthMarker: lengthMarker,
+    );
   }
 }
 
@@ -35,4 +40,12 @@ class DecodeOptions {
     this.indent = 2,
     this.strict = true,
   }) : assert(indent > 0, 'indent must be positive');
+
+  /// Resolves decode options with defaults.
+  ResolvedDecodeOptions resolve() {
+    return ResolvedDecodeOptions(
+      indent: indent,
+      strict: strict,
+    );
+  }
 }
